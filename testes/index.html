@@ -1,0 +1,453 @@
+<?php
+session_start();
+
+// Configuração da Conexão com o Banco de Dados MySQL
+$host = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'eventcop'; // Altere para o nome exato do banco de dados de vocês
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8", $usuario, $senha);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro na conexão com o banco de dados: " . $e->getMessage());
+}
+
+// ID padrão do organizador logado (ajuste conforme a sessão do seu sistema de login)
+$id_user = $_SESSION['id_user'] ?? 1;
+
+// Processa o formulário quando enviado via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+    if ($nome && $email) {
+        try {
+            $sql = "UPDATE usuarios SET nome = :nome, email = :email WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':id', $id_user);
+
+            if ($stmt->execute()) {
+                $_SESSION['msg_sucesso'] = "Perfil atualizado com sucesso!";
+            } else {
+                $_SESSION['msg_erro'] = "Erro ao atualizar perfil.";
+            }
+        } catch (PDOException $e) {
+            $_SESSION['msg_erro'] = "Erro no banco de dados: " . $e->getMessage();
+        }
+    } else {
+        $_SESSION['msg_erro'] = "Por favor, preencha todos os campos corretamente.";
+    }
+
+    header('Location: configuracoes.php');
+    exit;
+}
+
+// Busca os dados atuais do organizador no banco de dados
+$stmt = $pdo->prepare("SELECT nome, email FROM usuarios WHERE id = :id");
+$stmt->bindParam(':id', $id_user);
+$stmt->execute();
+$usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Valores recuperados do banco ou valores padrão caso a tabela esteja vazia
+$nome_atual = $usuario_db['nome'] ?? 'Marina Oliveira';
+$email_atual = $usuario_db['email'] ?? 'marina.oliveira@email.com';
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventCap - Configurações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/configurações.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-bar">
+        <div class="top-bar-logo">
+            <img src="imgs/eventcop-logo.png" alt="EventCap Logo" class="logo-img">
+        </div>
+        <nav class="top-bar-nav">
+            <a href="dashboard.html" class="top-bar-item"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="#" class="top-bar-item"><i class="fa-solid fa-calendar-days"></i> Meus eventos</a>
+            <a href="#" class="top-bar-item"><i class="fa-solid fa-users-rectangle"></i> Criar evento</a>
+            <a href="#" class="top-bar-item"><i class="fa-solid fa-bell"></i></a>
+            <div class="user-profile">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Marina Oliveira">
+                <span class="user-name"><?= htmlspecialchars($nome_atual) ?></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Section with Sidebar & Content -->
+    <div class="main-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item"><a href="dashboard.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-calendar-days"></i> Meus eventos</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-users"></i> Participantes</a></li>
+                <li class="sidebar-item"><a href="relatorios-metricas.html"><i class="fa-solid fa-chart-line"></i> Relatórios e métricas</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-award"></i> Certificados</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-user-tie"></i> Consultores</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-handshake"></i> Reuniões</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fa-solid fa-images"></i> Galeria de eventos</a></li>
+                <li class="sidebar-item active"><a href="configuracoes.php"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            
+            <!-- Header da Página -->
+            <div class="welcome-header">
+                <h1>Configurações</h1>
+                <p>Gerencie suas informações, preferências e a segurança da sua conta.</p>
+            </div>
+
+            <!-- Mensagens de Feedback do Banco de Dados -->
+            <?php if (isset($_SESSION['msg_sucesso'])): ?>
+                <div style="padding: 12px 16px; background: #e6f4ea; color: #1e7e34; border: 1px solid #ceead6; border-radius: 8px; margin-bottom: 20px; font-weight: 600; font-size: 0.9rem;">
+                    <i class="fa-solid fa-circle-check"></i> <?= $_SESSION['msg_sucesso']; unset($_SESSION['msg_sucesso']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['msg_erro'])): ?>
+                <div style="padding: 12px 16px; background: #fce8e6; color: #c5221f; border: 1px solid #fad2cf; border-radius: 8px; margin-bottom: 20px; font-weight: 600; font-size: 0.9rem;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <?= $_SESSION['msg_erro']; unset($_SESSION['msg_erro']); ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- Bloco 1: Informações do perfil (Sincronizado com MySQL) -->
+            <div class="card-box settings-card">
+                <div class="card-box-header-row">
+                    <div class="card-header-with-icon">
+                        <div class="section-icon-circle"><i class="fa-solid fa-user"></i></div>
+                        <div>
+                            <h3>Informações do perfil</h3>
+                            <p class="card-subtitle">Esses dados serão exibidos em sua conta e nos seus eventos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="configuracoes.php" method="POST">
+                    <div class="profile-info-grid">
+                        <!-- Foto de Perfil com botão da câmara -->
+                        <div class="profile-avatar-wrapper">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="Foto de Perfil" class="profile-avatar-img" id="profileImg">
+                            <button type="button" class="btn-camera-upload" onclick="document.getElementById('fileAvatar').click()"><i class="fa-solid fa-camera"></i></button>
+                            <input type="file" id="fileAvatar" style="display: none;" accept="image/*" onchange="previewAvatar(event)">
+                        </div>
+
+                        <!-- Campos de Entrada de Dados com valores do banco -->
+                        <div class="profile-fields-grid">
+                            <div class="form-group">
+                                <label>Nome completo</label>
+                                <input type="text" name="nome" id="inputNome" value="<?= htmlspecialchars($nome_atual) ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email" name="email" id="inputEmail" value="<?= htmlspecialchars($email_atual) ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" id="inputTelefone" value="(12) 98888-7777">
+                            </div>
+                            <div class="form-group">
+                                <label>Empresa / Organização</label>
+                                <input type="text" id="inputEmpresa" value="EventCop Eventos Corporativos">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button type="submit" class="btn-submit-dark" style="padding: 11px 24px; background: #5A0505; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">Salvar alterações</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Bloco 2: Alterar senha -->
+            <div class="card-box settings-card" style="margin-top: 24px;">
+                <div class="card-header-with-icon">
+                    <div class="section-icon-circle"><i class="fa-solid fa-lock"></i></div>
+                    <div>
+                        <h3>Alterar senha</h3>
+                        <p class="card-subtitle">Mantenha sua conta segura com uma senha forte.</p>
+                    </div>
+                </div>
+
+                <form class="password-form" onsubmit="event.preventDefault(); alert('Senha alterada com sucesso!');">
+                    <div class="password-fields-grid">
+                        <div class="form-group">
+                            <label>Senha atual</label>
+                            <div class="input-password-wrapper">
+                                <input type="password" placeholder="Digite sua senha atual">
+                                <i class="fa-regular fa-eye password-toggle"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nova senha</label>
+                            <div class="input-password-wrapper">
+                                <input type="password" placeholder="Digite sua nova senha">
+                                <i class="fa-regular fa-eye password-toggle"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar nova senha</label>
+                            <div class="input-password-wrapper">
+                                <input type="password" placeholder="Confirme sua nova senha">
+                                <i class="fa-regular fa-eye password-toggle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit-dark">Alterar senha</button>
+                </form>
+            </div>
+
+            <!-- Bloco 3: Preferências de conta -->
+            <div class="card-box settings-card" style="margin-top: 24px;">
+                <div class="card-header-with-icon">
+                    <div class="section-icon-circle"><i class="fa-solid fa-gear"></i></div>
+                    <div>
+                        <h3>Preferências de conta</h3>
+                        <p class="card-subtitle">Personalize sua experiência na EventCop.</p>
+                    </div>
+                </div>
+
+                <div class="preferences-grid">
+                    <div class="form-group">
+                        <label>Idioma</label>
+                        <div class="select-wrapper">
+                            <select>
+                                <option>Português (Brasil)</option>
+                                <option>English</option>
+                                <option>Español</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fuso horário</label>
+                        <div class="select-wrapper">
+                            <select>
+                                <option>(GMT-03:00) Brasília</option>
+                                <option>(GMT-04:00) Manaus</option>
+                                <option>(GMT+00:00) Lisboa</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tema</label>
+                        <div class="theme-options">
+                            <label class="radio-option">
+                                <input type="radio" name="theme" value="claro" checked onchange="changeTheme('claro')">
+                                <span class="radio-custom"></span>
+                                Claro
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="theme" value="escuro" onchange="changeTheme('escuro')">
+                                <span class="radio-custom"></span>
+                                Escuro
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="theme" value="auto" onchange="changeTheme('auto')">
+                                <span class="radio-custom"></span>
+                                Automático
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco 4: Notificações + Excluir conta -->
+            <div class="dashboard-split" style="margin-top: 24px;">
+                <div class="card-box">
+                    <div class="card-header-with-icon">
+                        <div class="section-icon-circle"><i class="fa-solid fa-bell"></i></div>
+                        <div>
+                            <h3>Notificações por e-mail</h3>
+                            <p class="card-subtitle">Escolha quais notificações deseja receber.</p>
+                        </div>
+                    </div>
+
+                    <div class="notifications-list">
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <span>Novos inscritos no evento</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>Lembretes de reuniões</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <i class="fa-regular fa-bell"></i>
+                                <span>Atualizações de pagamento</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <i class="fa-regular fa-file-lines"></i>
+                                <span>Novidades da EventCop</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-header-with-icon">
+                        <div class="section-icon-circle delete-icon"><i class="fa-regular fa-trash-can"></i></div>
+                        <div>
+                            <h3 class="delete-title">Excluir conta</h3>
+                        </div>
+                    </div>
+
+                    <p class="delete-description">
+                        Essa ação não pode ser desfeita. Todos os seus dados serão permanentemente removidos.
+                    </p>
+
+                    <button class="btn-delete-account" onclick="if(confirm('Tem certeza de que deseja excluir a sua conta?')) alert('Ação solicitada com sucesso.');">Excluir minha conta</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-coluna footer-empresa">
+            <img src="imgs/logo footer.jpg.jpeg" alt="EventCap" class="logo-footer">
+            <p class="descricao-footer">
+                A plataforma completa para planejar, organizar e executar eventos corporativos com eficiência.
+            </p>
+            <div class="traco"></div>
+
+            <div class="footer-info">
+                <img src="imgs/imagem localizacao footer.png" alt="Localização">
+                <p>
+                    Avenida das Nações, nº 850<br>
+                    São José dos Campos - SP<br>
+                    CEP: 12227-000
+                </p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imgs/imagem CNPJ footer.png" alt="Documento">
+                <p>CNPJ: 48.729.315/0001-62</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imgs/imagem e-mail footer.png" alt="E-mail">
+                <p>contato@eventcop.com.br</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imgs/imagem telefone footer.png" alt="Telefone">
+                <p>(12) 3456-7890</p>
+            </div>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imgs/imagem calendario footer.png" alt="Calendário">
+                <div>
+                    <h3>Tipos de Eventos</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Corporativos</a>
+            <a href="">› Workshops e Palestras</a>
+            <a href="">› Treinamentos</a>
+            <a href="">› Feiras e Exposições</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imgs/imagem recursos plataforma footer.png" alt="Recursos">
+                <div>
+                    <h3>Recursos da<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Gestão de Eventos</a>
+            <a href="">› Inscrições e Convites</a>
+            <a href="relatorios-metricas.html">› Relatórios e Métricas</a>
+            <a href="">› Agendamento com Consultores</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imgs/imagem comece na plataforma footer.png" alt="Comece na plataforma">
+                <div>
+                    <h3>Comece na<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Criar minha conta</a>
+            <a href="">› Quero organizar um evento</a>
+
+            <div class="ajuda">
+                <img src="imgs/imagem precisa de ajuda footer.png" alt="Atendimento" class="fone-ajuda">
+                <div>
+                    <h3>Precisa de ajuda?</h3>
+                    <p>Nossa equipe está pronta para te atender!</p>
+                    <a href="" class="btn-fale">
+                        Fale conosco
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-baixo">
+            <div class="redes">
+                <strong>Siga-nos</strong>
+                <img src="imgs/imagem redes sociais footer.png" alt="Instagram, LinkedIn e YouTube">
+            </div>
+            <p>©️ 2026 EventCop. Todos os direitos reservados.</p>
+            <div class="footer-politicas">
+                <a href="">Política de Privacidade</a>
+                <span>|</span>
+                <a href="">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="js/configurações.js"></script>
+</body>
+</html>

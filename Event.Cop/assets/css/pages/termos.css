@@ -1,0 +1,107 @@
+/* ==========================================================================
+   TERMOS DE USO E POLÍTICAS DE PRIVACIDADE - EventCop
+   Fiel aos wireframes: fundo vinho escuro (#5A0505 / #6E1414) e texto creme (#FFF8F2).
+   ========================================================================== */
+
+body.pagina-termos {
+    background-color: #6B1414;
+    color: #FFF8F2;
+}
+
+.termos-wrapper {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+.termos-cabecalho {
+    margin-bottom: 42px;
+}
+
+.termos-cabecalho h1,
+.termos-container h1 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.12;
+    margin-bottom: 8px;
+    color: #FFF8F2;
+}
+
+.data-atualizacao {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFF8F2;
+    opacity: 0.92;
+}
+
+.termos-container {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.termos-container .introducao {
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+    color: #FFF8F2;
+    opacity: 0.95;
+}
+
+.termos-secao {
+    margin-bottom: 28px;
+}
+
+.termos-secao h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #FFF8F2;
+}
+
+.termos-secao p {
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    color: #FFF8F2;
+    opacity: 0.94;
+}
+
+.termos-secao ul {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-bottom: 12px;
+}
+
+.termos-secao li {
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin-bottom: 4px;
+    color: #FFF8F2;
+    opacity: 0.94;
+}
+
+.termos-link {
+    color: #FFC7A3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+}
+
+.termos-link:hover {
+    color: #FFF8F2;
+}
+
+body.pagina-termos .footer {
+    border-top: 1px solid rgba(255, 248, 242, 0.2);
+}
+
+@media (max-width: 640px) {
+    .termos-wrapper {
+        padding: 32px 18px 60px;
+    }
+
+    .termos-secao h2 {
+        font-size: 18px;
+    }
+}
