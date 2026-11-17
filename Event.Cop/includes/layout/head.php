@@ -17,7 +17,7 @@ $bodyClass = $bodyClass ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle) ?></title>
     <link rel="icon" href="<?= asset('img/logonv.jpeg') ?>">
-    <link rel="stylesheet" href="<?= asset('css/base/tokens.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/base/variables.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/base/global.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/components/layout.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/components/header.css') ?>">
