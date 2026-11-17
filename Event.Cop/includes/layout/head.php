@@ -18,7 +18,10 @@ $bodyClass = $bodyClass ?? '';
     <title><?= e($pageTitle) ?></title>
     <link rel="icon" href="<?= asset('img/logonv.jpeg') ?>">
     <link rel="stylesheet" href="<?= asset('css/base/tokens.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/base/global.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/components/layout.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/components/header.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/components/footer.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/components/components.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/components/animations.css') ?>">
 <?php foreach ($pageCss as $css): ?>

@@ -18,9 +18,9 @@ $__u = usuario_logado();
     <nav class="menu" data-menu>
         <ul>
             <li><a href="<?= route('home') ?>" class="<?= $menuAtivo === 'home' ? 'is-active' : '' ?>">Home</a></li>
-            <li><a href="<?= route('planos') ?>" class="<?= $menuAtivo === 'planos' ? 'is-active' : '' ?>">Planos</a></li>
+            <li><a href="<?= route('planos') ?>" class="<?= $menuAtivo === 'planos' || $menuAtivo === 'empresas' ? 'is-active' : '' ?>">Planos</a></li>
             <li><a href="<?= route('criar_evento') ?>" class="<?= $menuAtivo === 'divulgar' ? 'is-active' : '' ?>">Divulgar meu evento</a></li>
-            <li><a href="<?= route('sobre') ?>" class="<?= $menuAtivo === 'sobre' ? 'is-active' : '' ?>">Sobre nós</a></li>
+            <li><a href="<?= route('sobre') ?>" class="<?= $menuAtivo === 'sobre' || $menuAtivo === 'recursos' ? 'is-active' : '' ?>">Sobre nós</a></li>
 
             <?php if ($__u): ?>
                 <?php if ($__u['tipo'] === 'organizador'): ?>

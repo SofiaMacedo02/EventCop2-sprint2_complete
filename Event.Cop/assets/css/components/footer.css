@@ -1,0 +1,352 @@
+/* ==========================================================================
+   FOOTER - EventCop
+   Estilos do rodapé moderno com suporte a responsividade e variáveis do tema.
+   ========================================================================== */
+
+.footer {
+    width: 100%;
+    background-color: var(--color-primary-dark, #5a0505);
+    color: var(--color-light, #fff8f2);
+    font-family: var(--fonte-base, "Inter", "Segoe UI", Arial, sans-serif);
+    margin-top: auto;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* --------------------------------------------------------------------------
+   Seção Superior
+   -------------------------------------------------------------------------- */
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+    padding: 56px 0 40px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Coluna 1: Logo e Marca */
+.brand-col .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.brand-col .logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--color-primary, #7d1a1a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.brand-col .logo-icon span {
+    transform: translateY(-1px);
+}
+
+.brand-col .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-col .brand-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.brand-col .brand-sub {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--color-accent, #ee8f66);
+    text-transform: uppercase;
+}
+
+.brand-col .brand-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 248, 242, 0.85);
+    max-width: 300px;
+}
+
+/* Coluna 2: Contatos */
+.contact-col {
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 248, 242, 0.95);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.contact-item:hover {
+    opacity: 0.8;
+    transform: translateX(3px);
+}
+
+.contact-item svg {
+    color: var(--color-accent, #ee8f66);
+    flex-shrink: 0;
+}
+
+/* Coluna 3: Links */
+.links-col .links-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.links-col .rocket-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent, #ee8f66);
+    flex-shrink: 0;
+}
+
+.links-col .links-title-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.links-col .title-underline {
+    display: block;
+    width: 32px;
+    height: 3px;
+    background: var(--color-accent, #ee8f66);
+    border-radius: 2px;
+    margin-top: 5px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 248, 242, 0.9);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.footer-links .arrow {
+    color: var(--color-accent, #ee8f66);
+    font-weight: bold;
+}
+
+/* Coluna 4: Card de Ajuda */
+.help-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-md, 14px);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.help-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.help-header svg {
+    color: var(--color-accent, #ee8f66);
+    flex-shrink: 0;
+}
+
+.help-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: var(--color-primary-dark, #5a0505);
+    padding: 10px 16px;
+    border-radius: var(--radius-pill, 999px);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+.help-btn:hover {
+    background-color: var(--color-light, #fff8f2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Divisor
+   -------------------------------------------------------------------------- */
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 248, 242, 0.16);
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Seção Inferior
+   -------------------------------------------------------------------------- */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px 0 32px;
+    font-size: 13px;
+    color: rgba(255, 248, 242, 0.75);
+}
+
+.social-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.social-label {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s, color 0.2s;
+}
+
+.social-circle:hover {
+    background: var(--color-accent, #ee8f66);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.copyright {
+    margin: 0;
+    font-size: 13px;
+}
+
+.legal-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legal-links a {
+    color: rgba(255, 248, 242, 0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.legal-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.legal-links .separator {
+    color: rgba(255, 248, 242, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Responsividade
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+    }
+
+    .brand-col .brand-desc {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 0 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .legal-links {
+        width: 100%;
+    }
+}
