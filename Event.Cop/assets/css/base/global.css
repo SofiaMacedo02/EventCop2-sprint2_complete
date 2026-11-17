@@ -9,19 +9,19 @@
    1. VARIÁVEIS (tema)
    -------------------------------------------------------------------------- */
 :root {
-    /* Cores da marca */
-    --cor-primaria: #7f1a18;
-    --cor-primaria-escura: #5e1311;
+    /* Cores da marca (alinhadas aos tokens do projeto) */
+    --cor-primaria: var(--color-primary, #7d1a1a);
+    --cor-primaria-escura: var(--color-primary-dark, #5a0505);
     --cor-primaria-clara: #a32421;
-    --cor-destaque: #ee8f66;
+    --cor-destaque: var(--color-accent, #ee8f66);
 
-    /* Neutros */
-    --cor-fundo: #1a1a1a;
-    --cor-superficie: #242424;
-    --cor-superficie-2: #2e2e2e;
-    --cor-borda: #3a3a3a;
-    --cor-texto: #f2f2f2;
-    --cor-texto-suave: #b5b5b5;
+    /* Neutros e Fundos */
+    --cor-fundo: var(--bg-cream, #f4ebe1);
+    --cor-superficie: var(--bg-card, #ffffff);
+    --cor-superficie-2: #f8f4ef;
+    --cor-borda: var(--border-color, #e2ded8);
+    --cor-texto: var(--text-main, #2d2d2d);
+    --cor-texto-suave: var(--text-muted, #6b6b6b);
     --cor-branco: #ffffff;
     --cor-preto: #000000;
 
@@ -158,7 +158,7 @@ table {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     font-weight: 700;
-    color: var(--cor-branco);
+    color: var(--cor-primaria);
 }
 
 h1 { font-size: var(--texto-4xl); }
@@ -330,12 +330,13 @@ hr {
 
 .btn-outline {
     background: transparent;
-    border-color: var(--cor-primaria-clara);
-    color: var(--cor-branco);
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
 }
 
 .btn-outline:hover {
     background: var(--cor-primaria);
+    color: var(--cor-branco);
 }
 
 .btn-ghost {
