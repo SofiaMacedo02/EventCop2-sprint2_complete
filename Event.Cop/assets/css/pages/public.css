@@ -400,3 +400,94 @@
   color: var(--cor-primaria-escura);
 }
 
+/* ==========================================================================
+   SEÇÃO: MAIS DO QUE EVENTOS, CONEXÕES
+   ========================================================================== */
+.sobre-conexoes {
+  --sobre-bg: #faf2ec;
+  --sobre-pill-bg: #f8dec8;
+  --sobre-vinho: #590a08;
+
+  background-color: var(--sobre-bg);
+  padding-block: var(--esp-8);
+  color: var(--sobre-vinho);
+}
+
+.sobre-conexoes .sobre-titulo {
+  color: var(--sobre-vinho);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--esp-4);
+}
+
+.sobre-conexoes .sobre-lead {
+  max-width: 720px;
+  font-size: var(--texto-lg);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--sobre-vinho);
+  margin-bottom: var(--esp-7);
+}
+
+/* 3 Pílulas de Destaque */
+.sobre-conexoes .sobre-pilares {
+  max-width: 980px;
+  margin-inline: auto;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-7);
+}
+
+.sobre-conexoes .pilar-pill {
+  background-color: var(--sobre-pill-bg);
+  color: var(--sobre-vinho);
+  padding: 16px 24px;
+  border-radius: 20px;
+  gap: var(--esp-3);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  transition: transform var(--transicao);
+}
+
+.sobre-conexoes .pilar-pill:hover {
+  transform: translateY(-2px);
+}
+
+.sobre-conexoes .pilar-pill svg {
+  width: 34px;
+  height: 34px;
+  color: var(--sobre-vinho);
+  flex-shrink: 0;
+}
+
+/* Texto de apoio */
+.sobre-conexoes .sobre-texto-apoio {
+  max-width: 680px;
+  font-size: var(--texto-base);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--sobre-vinho);
+  margin-bottom: var(--esp-7);
+}
+
+/* Faixa vinho inferior */
+.sobre-conexoes .sobre-banner {
+  background-color: var(--sobre-vinho);
+  color: var(--cor-branco);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 20px var(--esp-6);
+  border-radius: 20px;
+}
+
+@media (max-width: 600px) {
+  .sobre-conexoes {
+    padding-block: var(--esp-7);
+  }
+
+  .sobre-conexoes .sobre-banner {
+    padding: var(--esp-4);
+    font-size: var(--texto-sm);
+  }
+}

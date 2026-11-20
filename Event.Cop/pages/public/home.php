@@ -183,7 +183,7 @@ require ROOT_PATH . '/includes/layout/header.php';
             <article class="depoimento-card flex flex-col justify-between">
             <div>
                 <div class="autor-header flex items-center">
-                <img src="img/avatar-juliana.jpg" alt="Juliana Lima" class="autor-avatar">
+                <img src="<?= asset('img/juliana.jpg') ?>" alt="Juliana Lima" class="autor-avatar">
                 <div class="autor-info">
                     <h4>Juliana Lima</h4>
                     <p>Gerente de Eventos na TechSolutions</p>
@@ -212,7 +212,7 @@ require ROOT_PATH . '/includes/layout/header.php';
             <article class="depoimento-card flex flex-col justify-between">
             <div>
                 <div class="autor-header flex items-center">
-                <img src="img/avatar-rafael.jpg" alt="Rafael Mendes" class="autor-avatar">
+                <img src="<?= asset('img/rafael.jpg') ?>" alt="Rafael Mendes" class="autor-avatar">
                 <div class="autor-info">
                     <h4>Rafael Mendes</h4>
                     <p>Consultor de Desenvolvimento Profissional</p>
@@ -240,7 +240,7 @@ require ROOT_PATH . '/includes/layout/header.php';
             <article class="depoimento-card flex flex-col justify-between">
             <div>
                 <div class="autor-header flex items-center">
-                <img src="img/avatar-carolina.jpg" alt="Carolina Almeida" class="autor-avatar">
+                <img src="<?= asset('img/carolina.jpg') ?>" alt="Carolina Almeida" class="autor-avatar">
                 <div class="autor-info">
                     <h4>Carolina Almeida</h4>
                     <p>Analista de Marketing na Vision Eventos</p>
