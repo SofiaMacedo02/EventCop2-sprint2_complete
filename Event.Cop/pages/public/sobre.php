@@ -23,15 +23,11 @@ require ROOT_PATH . '/includes/layout/header.php';
                         <span class="arrow">&gt;</span>
                     </a> 
                 </div>
-            </div>
+            </div>  
             <div class="hero-media">
                 <div class="hero-image-box">
-                    <img src="<?= asset('') ?>" alt="Público aplaudindo em evento corporativo">
+                    <img id="hero-image2" src="<?= asset('img/hero2.jpg') ?>" alt="Público aplaudindo em evento corporativo">
                 </div>
-                <blockquote class="hero-quote">
-                    <p>Mais que eventos.<br>Novas possibilidades.</p>
-                    <span class="quote-line"></span>
-                </blockquote>
             </div>
         </div>
     </section>

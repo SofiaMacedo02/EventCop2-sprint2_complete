@@ -1,17 +1,24 @@
+/* ==========================================================================
+   HEADER - EventCop
+   Cabeçalho principal e navegação pública.
+   Utiliza variáveis de variables.css (--color-primary-dark, etc.).
+   ========================================================================== */
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
-    height: 70px;
+    z-index: 50;
+    height: var(--header-height, 70px);
     padding: 0 40px;
-    background: #7f1a18;
-    color: #fff;
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: var(--color-primary-dark, #5a0505);
+    color: var(--color-light, #fff8f2);
+    font-family: var(--fonte-base, "Inter", "Segoe UI", Arial, sans-serif);
 }
 
 .logo-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -34,22 +41,22 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #fff;
+    color: var(--color-light, #ffffff);
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
     padding: 6px 2px;
     border-bottom: 2px solid transparent;
-    transition: border-color .2s, opacity .2s;
+    transition: border-color var(--transition-base, 0.2s ease), opacity var(--transition-base, 0.2s ease);
 }
 
 .menu a:hover {
-    opacity: .85;
-    border-bottom-color: rgba(255, 255, 255, .6);
+    opacity: 0.85;
+    border-bottom-color: rgba(255, 255, 255, 0.6);
 }
 
 .menu a.is-active {
-    border-bottom-color: #fff;
+    border-bottom-color: #ffffff;
 }
 
 .menu-entrar {
@@ -60,10 +67,11 @@
     flex-shrink: 0;
 }
 
-/* Botão hambúrguer (só no mobile) */
+/* ---------- Botão Hambúrguer (Mobile) ---------- */
 .menu-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
     background: none;
     border: 0;
@@ -75,10 +83,24 @@
     display: block;
     width: 24px;
     height: 2px;
-    background: #fff;
+    background: #ffffff;
     border-radius: 2px;
+    transition: transform var(--transition-base, 0.25s ease), opacity var(--transition-fast, 0.2s ease);
 }
 
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Responsividade ---------- */
 @media (max-width: 860px) {
     .header {
         padding: 0 20px;
@@ -91,22 +113,29 @@
     .menu {
         display: none;
         position: absolute;
-        top: 70px;
+        top: var(--header-height, 70px);
         left: 0;
         right: 0;
-        background: #7f1a18;
-        padding: 12px 20px 20px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, .25);
+        background: var(--color-primary-dark, #5a0505);
+        padding: 16px 24px 24px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
         z-index: 100;
     }
 
     .menu.is-open {
         display: block;
+        animation: fadeUp 0.25s ease both;
     }
 
     .menu ul {
         flex-direction: column;
         align-items: flex-start;
-        gap: 14px;
+        gap: 16px;
+    }
+
+    .menu a {
+        font-size: 16px;
+        width: 100%;
+        padding: 8px 0;
     }
 }

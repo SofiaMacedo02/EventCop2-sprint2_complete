@@ -1,32 +1,24 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    LAYOUT GERAL - EventCop
-   Estrutura base universal do corpo e containers da aplicação.
-   Estilos específicos de Header e Footer estão modularizados em:
-   - assets/css/components/header.css
-   - assets/css/components/footer.css
+   Estrutura e containers base da aplicação.
+   Reset e tipografia base estão definidos em global.css.
+   Header e Footer estão modularizados em header.css e footer.css.
    ========================================================================== */
 
-[hidden] {
-    display: none !important;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Base Universal do Corpo */
 body {
     min-height: 100vh;
-    background-color: var(--bg-cream, #f4ebe1);
-    color: var(--text-dark, #7d1a1a);
     display: flex;
     flex-direction: column;
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background-color: var(--bg-cream, #f4ebe1);
+    color: var(--text-main, #2d2d2d);
 }
 
 main {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+.main-content {
     flex: 1 0 auto;
     width: 100%;
 }
