@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'telefone' => $telefone,
         ])) {
             flash('ok', 'Conta criada com sucesso! Bem-vindo à EventCop.');
-            redirect_to('galeria');
+            redirect_to('home');
         } else {
             $erro = 'Por favor, informe um endereço de e-mail válido.';
         }

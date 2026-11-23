@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (login_mock('participante', $email, $senha)) {
         flash('ok', 'Login realizado com sucesso!');
-        redirect_to('galeria');
+        redirect_to('home');
     } else {
         $erro = 'Por favor, preencha seu e-mail e senha para entrar.';
     }

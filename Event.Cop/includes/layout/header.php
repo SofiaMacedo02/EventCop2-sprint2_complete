@@ -26,7 +26,7 @@ $__u = usuario_logado();
                 <?php if ($__u['tipo'] === 'organizador'): ?>
                     <li><a href="<?= route('dashboard') ?>" class="<?= $menuAtivo === 'admin' ? 'is-active' : '' ?>">Meu painel</a></li>
                 <?php else: ?>
-                    <li><a href="<?= route('galeria') ?>">Olá, <?= e(explode(' ', $__u['nome'])[0]) ?></a></li>
+                    <li><a href="<?= route('home') ?>">Olá, <?= e(explode(' ', $__u['nome'])[0]) ?></a></li>
                 <?php endif; ?>
                 <li><a href="<?= route('logout') ?>">Sair</a></li>
             <?php else: ?>
