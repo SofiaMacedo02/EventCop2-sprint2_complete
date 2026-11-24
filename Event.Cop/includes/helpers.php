@@ -7,8 +7,7 @@
 const ROTAS = [
     // público
     'home'                => 'pages/public/home.php',
-    'empresas'            => 'pages/public/empresas.php',
-    'planos'              => 'pages/public/empresas.php',
+    'planos'              => 'pages/public/planos.php',
     'recursos'            => 'pages/public/recursos.php',
     'sobre'               => 'pages/public/sobre.php',
     'agenda'              => 'pages/public/agenda-consultores.php',

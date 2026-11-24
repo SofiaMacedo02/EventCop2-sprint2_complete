@@ -1,0 +1,401 @@
+/* ==========================================================================
+   SEÇÃO: PLANOS PARA DIVULGAR SEU EVENTO
+   ========================================================================== */
+.planos-section {
+  --planos-bg: #faf2ec;
+  --planos-card-bg: #f6e3d4;
+  --planos-borda: #d6baaa;
+  --planos-vinho: #590a08;
+  --planos-badge: #e6b38f;
+
+  background-color: var(--planos-bg);
+  border-top: 4px solid var(--cor-primaria);
+  padding-block: var(--esp-7) var(--esp-8);
+  color: var(--planos-vinho);
+}
+
+/* Marca centralizada no topo */
+.planos-brand {
+  gap: 14px;
+  margin-bottom: var(--esp-5);
+}
+
+.planos-logo-img {
+  max-height: 75px; /* Ajuste a altura conforme o tamanho desejado */
+  width: auto;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+.planos-brand-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--planos-vinho);
+  line-height: 1.05;
+}
+
+.planos-brand-sub {
+  font-size: 0.625rem;
+  letter-spacing: 0.9px;
+  color: var(--cor-primaria);
+  margin-top: 2px;
+}
+
+/* Cabeçalho */
+.planos-section .planos-titulo {
+  color: var(--planos-vinho);
+  font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+  font-weight: 800;
+  margin-bottom: var(--esp-2);
+}
+
+.planos-subtitulo {
+  color: var(--cor-primaria);
+  font-size: var(--texto-base);
+  font-weight: 500;
+  margin-bottom: var(--esp-4);
+}
+
+.planos-section .planos-divider {
+  width: 140px;
+  height: 1.5px;
+  background-color: #c5b6ae;
+  margin-bottom: var(--esp-7);
+}
+
+/* Grid de Cards */
+.planos-grid {
+  max-width: 960px;
+  margin-inline: auto;
+  gap: var(--esp-5);
+  align-items: stretch;
+}
+
+.plano-card {
+  position: relative;
+  background-color: var(--planos-card-bg);
+  border: 1.5px solid var(--planos-borda);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.plano-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(89, 10, 8, 0.12);
+}
+
+/* Selo "Mais escolhido" */
+.plano-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--planos-badge);
+  color: var(--planos-vinho);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  padding: 4px 18px;
+  border-radius: var(--raio-pill);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Topo vinho do card */
+.plano-header {
+  background-color: var(--planos-vinho);
+  color: var(--cor-branco);
+  padding: 18px var(--esp-4) 16px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+
+.plano-qtd {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.plano-label {
+  font-size: var(--texto-lg);
+  font-weight: 500;
+}
+
+/* Corpo do card */
+.plano-body {
+  padding: var(--esp-5) var(--esp-4) var(--esp-5);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.plano-preco {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--planos-vinho);
+  font-weight: 800;
+  margin-bottom: var(--esp-4);
+}
+
+.plano-preco .moeda {
+  font-size: var(--texto-base);
+  margin-right: 4px;
+}
+
+.plano-preco .valor {
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.plano-preco .centavos {
+  font-size: var(--texto-lg);
+}
+
+.plano-body .plano-sep {
+  height: 1px;
+  background-color: var(--planos-borda);
+  margin: 0 0 var(--esp-5) 0;
+}
+
+/* Lista de Benefícios */
+.plano-beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  text-align: left;
+  margin-bottom: var(--esp-6);
+  flex: 1;
+}
+
+.plano-beneficios li {
+  gap: var(--esp-3);
+  color: var(--planos-vinho);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.beneficio-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--planos-vinho);
+  color: var(--planos-card-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Botão Contratar Plano */
+.btn-plano {
+  display: block;
+  width: 100%;
+  background-color: var(--planos-vinho);
+  color: var(--cor-branco);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  padding: 13px var(--esp-4);
+  border-radius: var(--raio-md);
+  text-align: center;
+  transition: background-color var(--transicao), transform var(--transicao);
+}
+
+.btn-plano:hover {
+  background-color: var(--cor-primaria);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   CARDS DE PLANOS - MODELO FIEL À IMAGEM
+   ========================================================================== */
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 295px));
+  justify-content: center;
+  gap: 24px;
+  align-items: stretch;
+  margin-inline: auto;
+}
+
+.plano-card {
+  --card-bg: #f7e4d6;
+  --card-borda: #cbb2a4;
+  --card-vinho: #590a08;
+  --card-linha: #e2cbbd;
+
+  position: relative;
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--card-borda);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.plano-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(89, 10, 8, 0.14);
+}
+
+/* Selo superior "Mais escolhido" */
+.plano-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e6b38f;
+  color: var(--card-vinho);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 18px;
+  border-radius: var(--raio-pill);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Topo vinho do card */
+.plano-header {
+  background-color: var(--card-vinho);
+  color: var(--cor-branco);
+  padding: 18px 16px 16px;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+
+.plano-qtd {
+  font-size: 2.35rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.plano-label {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Corpo do card */
+.plano-body {
+  padding: 24px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Preço (R$ no meio, 800 grande, ,00 alinhado ao topo) */
+.plano-preco {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--card-vinho);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.plano-preco .moeda {
+  font-size: 1.05rem;
+  align-self: center;
+  margin-right: 6px;
+  margin-top: 4px;
+}
+
+.plano-preco .valor {
+  font-size: 2.9rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.plano-preco .centavos {
+  font-size: 1.35rem;
+  line-height: 1.1;
+  margin-left: 2px;
+}
+
+/* Linha divisória fina */
+.plano-body .plano-sep {
+  border: 0;
+  height: 1px;
+  background-color: var(--card-linha);
+  margin: 0 0 22px 0;
+}
+
+/* Lista de Benefícios */
+.plano-beneficios {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+  flex: 1;
+}
+
+.plano-beneficios li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #3d1816;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.beneficio-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--card-vinho);
+  color: var(--cor-branco);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Botão Contratar Plano */
+.btn-plano {
+  display: block;
+  width: 100%;
+  background-color: var(--card-vinho);
+  color: var(--cor-branco);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 13px 16px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transicao), transform var(--transicao);
+}
+
+.btn-plano:hover {
+  background-color: var(--cor-primaria);
+  transform: translateY(-1px);
+}
+
+/* Responsivo */
+@media (max-width: 960px) {
+  .planos-grid {
+    grid-template-columns: minmax(260px, 320px);
+  }
+}   
+
+@media (max-width: 960px) {
+  .planos-grid {
+    max-width: 420px;
+  }
+
+  .plano-destaque {
+    margin-block: var(--esp-2);
+  }
+}
